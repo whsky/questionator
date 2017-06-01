@@ -3,10 +3,11 @@
 # April 2017
 #
 # Flask app for randomly selecting a student to ask a question
-#   This requires that Slacker is pip installed, and that you have Slack API
-#   token saved to your bash profile as 'SLACK_TOKEN', and that the :qbot:
-#   custom emoji is available on the channel you are using (if you are
-#   messaging the channel)
+#   This requires that Slacker installed (https://github.com/os/slacker),
+#   and that you have Slack API token saved to your bash profile as
+#   'SLACK_TOKEN' (https://api.slack.com/tokens), and that the :qbot: custom
+#   emoji is available on the channel you are using (if you are messaging
+#   the channel)
 #
 # Run this script from the terminal, it needs two additional arguements.
 #   1: for what Slack channel on gStudents to pull the class roster from
