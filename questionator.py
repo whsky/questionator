@@ -18,6 +18,8 @@
 #   $ questionator.py 'g39ds_platte' False
 # This will use #g39ds_platte members as the class roster, and will not send a
 #   message to that channel when a question is asked.
+#
+# This should take about 20sec to start up.
 #############################################################################
 
 import os
@@ -67,6 +69,7 @@ def id_to_username(slack_member_list, member_id):
         if member['profile']['real_name'] == name:
             return member['name']
 
+
 app = Flask(__name__)
 
 
@@ -76,7 +79,7 @@ def index():
 
 
 @app.route('/question', methods=['POST'])
-def pnt_predicter():
+def qbot():
     #Find students who have answered the fewest questions:
     df_min = df[df.num_quest == min(df.num_quest)]
     stud_min = df_min.index.values.tolist()
