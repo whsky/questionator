@@ -34,6 +34,7 @@ from random import randrange, sample, choice
 
 def init_slack_channel(api_token, channel_name):
     slack = Slacker(api_token)
+    print("Collecting available Slack channels...")
     chnls = slack.channels.list().body['channels']
     chnl_names = []
     for x in range(len(chnls)):
@@ -43,8 +44,10 @@ def init_slack_channel(api_token, channel_name):
     chan_idx = chnl_names.index(channel_name)
 
     #Collect all channel's member IDs:
+    print("Collecting members from channel #{}...".format(channel_name))
     all_members = chnls[chan_idx]['members']
     #Filter out any member with an @galvanize email address:
+    print("Filter out any member with an @galvanize email address...")
     students = []
     for idx, member in enumerate(all_members):
         email = slack.users.profile.get(member).body['profile']['email']
@@ -75,7 +78,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', class_name=channel_name)
 
 
 @app.route('/question', methods=['POST'])
@@ -117,12 +120,23 @@ def qbot():
 
 if __name__ == '__main__':
     api_token = os.environ['SLACK_TOKEN']
-    channel_name = sys.argv[1]
-    ping_slack = sys.argv[2]
-    ping_slack = ping_slack == 'True'
+    if len(sys.argv) >= 2:
+        channel_name = sys.argv[1]
+        if len(sys.argv) == 3:
+            ping_slack = sys.argv[2]
+            ping_slack = ping_slack == 'True'
+        else:
+            ping_slack = False
+    else:
+        raise ValueError("Please supply a Slack channel name as an arguement when calling questionator.py!")
 
+    print("*")*50
+    print("Initializing Slack API")
+    print("*")*50
     slack, students = init_slack_channel(api_token, channel_name)
 
+    print("*")*50
+    print("Getting usernames and avatars")
     slack_member_list = slack.users.list().body['members']
     usernames = [id_to_username(slack_member_list, x) for x in students]
 
@@ -131,4 +145,7 @@ if __name__ == '__main__':
     df['username'] = usernames
     df['num_quest'] = [0]*len(students)
 
+    print("*")*50
+    print("Starting up Flask app")
+    print("*")*50
     app.run(host='0.0.0.0', port=8080, threaded=True)
