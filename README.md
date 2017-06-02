@@ -20,6 +20,17 @@ For example:
 ```bash
 export SLACK_TOKEN="your token string here..."
 ```
+Don't forget that you have to re-source you bash profile after editing it...
+
+```bash
+$ source ~/.bash_profile
+```
+
+API calls are made through python using the [Slacker package](https://github.com/os/slacker). You will need to install this before you run the script.
+
+```bash
+$ pip install slacker
+```
 
 You will also have to specify what channel your class is using. You can do this
 by using a system argument when you call the script.
