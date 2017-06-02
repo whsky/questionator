@@ -29,8 +29,9 @@ Slack message to the channel with the `qbot` Slack app built into the
 Questionator. This is set with `True` or `False` as the last system argument.
 
 An example run code looks like this:
-
-`$ python questionator.py 'channel_name' False`
+```bash
+$ python questionator.py 'channel_name' False
+```
 
 This would collect student names, Slack usernames, and profile pics for members
 in the 'channel_name' channel, and would not send messages to the channel when
