@@ -1,4 +1,4 @@
-![Header Image](path?raw=true "Header Image")
+![Header Image](https://github.com/whsky/questionator/blob/master/readme_images/QuestionatorHeader.png?raw=true "Header Image")
 
 # The Questionator
 
