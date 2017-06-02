@@ -16,6 +16,11 @@ environment alias in your `.bash_profile`, `.bashrc`, or `.zshrc` resource
 file. Use the alias name `SLACK_TOKEN` so the python script will pull it in
 automatically when launched.
 
+For example:
+```bash
+export SLACK_TOKEN="your token string here..."
+```
+
 You will also have to specify what channel your class is using. You can do this
 by using a system argument when you call the script.
 
