@@ -36,12 +36,12 @@ You will also have to specify what channel your class is using. You can do this
 by using a system argument when you call the script.
 
 You can also specify whether our not you want the Questionator to send a
-Slack message to the channel with the `qbot` Slack app built into the
-Questionator. This is set with `True` or `False` as the last system argument.
+Slack message to the user selected with the `qbot` Slack app built into the
+Questionator. This is set with `True` or `False` as the `--ping` system argument.
 
 An example run code looks like this:
 ```bash
-$ python questionator.py 'channel_name' False
+$ python questionator.py --chan='channel_name' --ping=False
 ```
 
 This would collect student names, Slack usernames, and profile pics for members
